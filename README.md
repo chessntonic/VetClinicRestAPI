@@ -15,3 +15,7 @@
 
 ## Endpoints
 - Endpoints and their functionalities are listed below:![endpoints.png](src%2Fendpoints.png)
+
+## UML Diagram
+
+- The UML diagram of the system is shown below:![UmlDiagram.JPG](UmlDiagram.JPG)

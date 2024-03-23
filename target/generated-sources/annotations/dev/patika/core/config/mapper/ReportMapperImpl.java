@@ -3,6 +3,7 @@ package dev.patika.core.config.mapper;
 import dev.patika.dto.request.ReportRequest;
 import dev.patika.dto.response.global.GlobalAnimalResponse;
 import dev.patika.dto.response.global.GlobalDoctorResponse;
+import dev.patika.dto.response.global.GlobalReportResponse;
 import dev.patika.dto.response.global.GlobalVaccineResponse;
 import dev.patika.dto.response.standard.AppointmentResponse;
 import dev.patika.dto.response.standard.ReportResponse;
@@ -123,6 +124,19 @@ public class ReportMapperImpl implements ReportMapper {
         return appointmentResponse;
     }
 
+    protected GlobalReportResponse reportToGlobalReportResponse(Report report) {
+        if ( report == null ) {
+            return null;
+        }
+
+        GlobalReportResponse globalReportResponse = new GlobalReportResponse();
+
+        globalReportResponse.setId( report.getId() );
+        globalReportResponse.setTitle( report.getTitle() );
+
+        return globalReportResponse;
+    }
+
     protected GlobalVaccineResponse vaccineToGlobalVaccineResponse(Vaccine vaccine) {
         if ( vaccine == null ) {
             return null;
@@ -136,6 +150,7 @@ public class ReportMapperImpl implements ReportMapper {
         globalVaccineResponse.setProtectionStartDate( vaccine.getProtectionStartDate() );
         globalVaccineResponse.setProtectionFinishDate( vaccine.getProtectionFinishDate() );
         globalVaccineResponse.setAnimal( animalToGlobalAnimalResponse( vaccine.getAnimal() ) );
+        globalVaccineResponse.setReport( reportToGlobalReportResponse( vaccine.getReport() ) );
 
         return globalVaccineResponse;
     }

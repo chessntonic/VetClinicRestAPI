@@ -2,8 +2,10 @@ package dev.patika.core.config.mapper;
 
 import dev.patika.dto.request.VaccineRequest;
 import dev.patika.dto.response.global.GlobalAnimalResponse;
+import dev.patika.dto.response.global.GlobalReportResponse;
 import dev.patika.dto.response.standard.VaccineResponse;
 import dev.patika.entity.Animal;
+import dev.patika.entity.Report;
 import dev.patika.entity.Vaccine;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class IVaccineMapperImpl implements IVaccineMapper {
         vaccineResponse.setProtectionStartDate( vaccine.getProtectionStartDate() );
         vaccineResponse.setProtectionFinishDate( vaccine.getProtectionFinishDate() );
         vaccineResponse.setAnimal( animalToGlobalAnimalResponse( vaccine.getAnimal() ) );
+        vaccineResponse.setReport( reportToGlobalReportResponse( vaccine.getReport() ) );
 
         return vaccineResponse;
     }
@@ -91,5 +94,18 @@ public class IVaccineMapperImpl implements IVaccineMapper {
         globalAnimalResponse.setName( animal.getName() );
 
         return globalAnimalResponse;
+    }
+
+    protected GlobalReportResponse reportToGlobalReportResponse(Report report) {
+        if ( report == null ) {
+            return null;
+        }
+
+        GlobalReportResponse globalReportResponse = new GlobalReportResponse();
+
+        globalReportResponse.setId( report.getId() );
+        globalReportResponse.setTitle( report.getTitle() );
+
+        return globalReportResponse;
     }
 }
